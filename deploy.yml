@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: goapi
+  annotations:
+    "sidecar.jaegertracing.io/inject": "true"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: goapi
+  template:
+    metadata:
+      labels:
+        app: goapi
+    spec:
+      
+      containers:
+      - name: goapi
+        image: gcr.io/gcp-jc-project/hotrod:8e68241556209217b54254f3b74ef8e932866b51
+        
+        resources:
+          
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: goapi
+spec:
+  type: NodePort
+  selector:
+    app: goapi
+  ports:
+  - port: 8080
+    targetPort: 8080
+    nodePort: 30608
