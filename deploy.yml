@@ -17,7 +17,7 @@ spec:
       
       containers:
       - name: goapi
-        image: gcr.io/gcp-jc-project/hotrod:8e68241556209217b54254f3b74ef8e932866b51
+        image: gcr.io/gcp-jc-project/hotrod@sha256:e2e78c5a761f74cad09a0e0e7484280cf0b6c3a78a255e9335a17f808daa7746
         
         resources:
           
