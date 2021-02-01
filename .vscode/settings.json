@@ -1,0 +1,4 @@
+{
+    "go.useLanguageServer": true,
+    "editor.suggest.insertMode": "replace"
+}

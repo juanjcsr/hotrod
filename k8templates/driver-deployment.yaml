@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: driver-svc
+spec:
+  selector: 
+    app: hotroddriver
+  ports:
+    - port: 8082
+      targetPort: 8082
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hotroddriver
+  annotations:
+    "sidecar.jaegertracing.io/inject": "true"
+  labels:
+    app: hotroddriver
+spec:
+  selector:
+    matchLabels:
+      app: hotroddriver
+  template:
+    metadata:
+      labels:
+        app: hotroddriver
+    spec:
+      containers:
+      - name: hotroddriver
+        image: juanjcsr/hotrod:latest
+        imagePullPolicy: Always
+        args:
+          - "driver"
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8082

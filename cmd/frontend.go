@@ -27,7 +27,7 @@ import (
 	"github.com/juanjcsr/hotrod/services/frontend"
 )
 
-// frontendCmd represents the frontend command
+// frontendCmd represents the frontend commandroute-svc
 var frontendCmd = &cobra.Command{
 	Use:   "frontend",
 	Short: "Starts Frontend service",
@@ -35,9 +35,9 @@ var frontendCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 
 		options.FrontendHostPort = net.JoinHostPort("0.0.0.0", strconv.Itoa(frontendPort))
-		options.DriverHostPort = net.JoinHostPort("0.0.0.0", strconv.Itoa(driverPort))
-		options.CustomerHostPort = net.JoinHostPort("0.0.0.0", strconv.Itoa(customerPort))
-		options.RouteHostPort = net.JoinHostPort("0.0.0.0", strconv.Itoa(routePort))
+		options.DriverHostPort = net.JoinHostPort("driver-svc", strconv.Itoa(driverPort))
+		options.CustomerHostPort = net.JoinHostPort("customer-svc", strconv.Itoa(customerPort))
+		options.RouteHostPort = net.JoinHostPort("route-svc", strconv.Itoa(routePort))
 		options.Basepath = basepath
 		options.JaegerUI = jaegerUI
 

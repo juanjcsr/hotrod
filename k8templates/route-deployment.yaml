@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: route-svc
+spec:
+  selector: 
+    app: hotrodroute
+  ports:
+    - port: 8083
+      targetPort: 8083
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hotrodroute
+  annotations:
+    "sidecar.jaegertracing.io/inject": "true"
+  labels:
+    app: hotrodroute
+spec:
+  selector:
+    matchLabels:
+      app: hotrodroute
+  template:
+    metadata:
+      labels:
+        app: hotrodroute
+    spec:
+      containers:
+      - name: hotrodroute
+        image: juanjcsr/hotrod:latest
+        imagePullPolicy: Always
+        args:
+          - "route"
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8083

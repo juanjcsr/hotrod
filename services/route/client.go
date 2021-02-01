@@ -17,6 +17,7 @@ package route
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 	"net/url"
 
@@ -57,6 +58,7 @@ func (c *Client) FindRoute(ctx context.Context, pickup, dropoff string) (*Route,
 	v.Set("pickup", pickup)
 	v.Set("dropoff", dropoff)
 	url := "http://" + c.hostPort + "/route?" + v.Encode()
+	fmt.Printf("ROUTE: %s", url)
 	var route Route
 	if err := c.client.GetJSON(ctx, "/route", url, &route); err != nil {
 		c.logger.For(ctx).Error("Error getting route", zap.Error(err))

@@ -3,6 +3,7 @@ module github.com/juanjcsr/hotrod
 go 1.15
 
 require (
+	github.com/aws/aws-lambda-go v1.22.0
 	github.com/gogo/protobuf v1.3.1
 	github.com/jaegertracing/jaeger v1.21.0
 	github.com/opentracing-contrib/go-grpc v0.0.0-20200813121455-4a6760c71486

@@ -13,4 +13,4 @@ FROM scratch
 WORKDIR /app
 COPY --from=builder /app/ .
 EXPOSE 8080 8081 8082 8083
-ENTRYPOINT [ "/app/app", "all" ]
+ENTRYPOINT [ "/app/app" ]
