@@ -22,3 +22,11 @@ jobs:
 
       - name: Build
         run: go build -v ./...
+
+  dockerbuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: build image
+        run: |
+          docker build -t juanjcsr/hotrodaction .
