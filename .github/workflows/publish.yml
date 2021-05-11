@@ -46,7 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - build
-    environment: production
+    environment: productionize
     steps:
       - uses: actions/checkout@v2
       - name: build image
